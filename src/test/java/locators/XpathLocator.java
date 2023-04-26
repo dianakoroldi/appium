@@ -1,12 +1,16 @@
 package locators;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 public class XpathLocator {
 
@@ -21,6 +25,14 @@ public class XpathLocator {
 
         URL appiumServerUrl =new URL("http://0.0.0.0:4723/wd/hub");
         AndroidDriver driver=new AndroidDriver(appiumServerUrl,caps);
+
+       WebElement accessibilityButton =
+               driver.findElement(By.xpath("//android.widget.TextView[@text='Accessibility']"));
+       accessibilityButton.click();
+
+       List<WebElement> elements = driver.findElements(By.id("android:id/text1"));
+        Assert.assertEquals(4, elements.size());
+
 
     }
 }
